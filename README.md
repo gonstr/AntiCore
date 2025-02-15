@@ -1,2 +1,3 @@
-# anti-ui
-UI Components. Best used together with my WA packs.
+# AntiCore
+
+Helper addon, for use with my WA packs.
