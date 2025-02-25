@@ -2,33 +2,34 @@ local addonName, addon = ...
 
 local AceEvent = LibStub("AceEvent-3.0")
 
-addon.TransparentUnitFramePrototype = {}
+addon.EmptyUnitFramePrototype = {}
 
-local TransparentUnitFrame = addon.TransparentUnitFramePrototype
-TransparentUnitFrame.__index = TransparentUnitFrame
+local EmptyUnitFrame = addon.EmptyUnitFramePrototype
+EmptyUnitFrame.__index = EmptyUnitFrame
 
-function TransparentUnitFrame:New()
+function EmptyUnitFrame:New(unit)
     local instance = setmetatable({}, self)
 
     AceEvent:Embed(instance)
 
-    instance.frame = CreateFrame("Button", nil, UIParent, "SecureUnitButtonTemplate")
+    -- We borrow the "Vd" prefix to make the frames compatible with LibGetFrame
+    instance.frame = CreateFrame("Button", "Vd_AntiCore_" .. unit, UIParent, "SecureUnitButtonTemplate")
     instance.frame:SetFrameStrata("HIGH")
     instance.frame:RegisterForClicks("AnyUp")
     instance.frame:SetAttribute("*type1", "target")
     instance.frame:SetAttribute("*type2", "menu")
-	instance.frame.menu = Anti_CompactUnitFrame_OpenMenu
+	  instance.frame.menu = Anti_CompactUnitFrame_OpenMenu
 
     instance.tainted = false
 
     return instance
 end
 
-function TransparentUnitFrame:GetFrameUnsafe()
+function EmptyUnitFrame:GetFrameUnsafe()
     return self.frame
 end
 
-function TransparentUnitFrame:SetData(unit, width, height, left, bottom)
+function EmptyUnitFrame:SetData(unit, width, height, left, bottom)
     self.unit = unit
     self.width = width
     self.height = height
@@ -38,7 +39,7 @@ function TransparentUnitFrame:SetData(unit, width, height, left, bottom)
     self:Update()
 end
 
-function TransparentUnitFrame:OnRelease()
+function EmptyUnitFrame:OnRelease()
     self.unit = nil
     self.width = nil
     self.height = nil
@@ -48,7 +49,7 @@ function TransparentUnitFrame:OnRelease()
     self.frame:Hide()
 end
 
-function TransparentUnitFrame:Update()
+function EmptyUnitFrame:Update()
     -- Since this frame is secure, there are restictions on how it can be updated. For now we set it as tainted
     -- and only allow configuration once.
     -- TODO: Handle updates with in combat checks, RegisterStateDriver?

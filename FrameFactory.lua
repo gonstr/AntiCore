@@ -11,7 +11,7 @@ function FrameFactory:New()
     local instance = setmetatable({}, self)
 
     instance.framePrototypes = {
-        transparentUnitFrame = addon.TransparentUnitFramePrototype,
+        emptyUnitFrame = addon.EmptyUnitFramePrototype,
     }
     
     instance.frames = {}
