@@ -1,4 +1,4 @@
-## Interface: 50400
+## Interface: 50500
 ## Title: AntiCore
 ## Notes: WA Core Library
 ## Author: Anti
