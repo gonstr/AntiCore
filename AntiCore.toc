@@ -3,7 +3,7 @@
 ## Notes: WA Core Library
 ## Author: Anti
 ## Version: @project-version@
-## X-Curse-Project-ID: 1048555
+## X-Curse-Project-ID: 1307261
 ## SavedVariables: AntiCore
 ## OptionalDeps: Ace3, WeakAuras
 
